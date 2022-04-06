@@ -7,26 +7,32 @@
  * @link http://www.lingoes.net/en/translator/langcode.htm
  */
 
- const formatter = (locale = "en-US", currency = "USD", value) => {
-    let formattedValue = new Intl.NumberFormat(locale, {
-      style: "currency",
-      currency: currency,
-    }).format(value);
-  
-    return formattedValue;
-  };
-  
-  const tipCalculator = (sum, percentage, locale, currency) => {
-    let tip = sum * (percentage / 100);
-    let total = sum + tip;
-  
-    console.log(`
-      Sum before tip: ${formatter(locale, currency, sum)}
-      Tip percentage: ${percentage}%
-      Tip:            ${formatter(locale, currency, tip)}
-      Total:          ${formatter(locale, currency, total)}
-    `);
-  };
-  
-  tipCalculator(29.95, 18, "en", "USD");
-  
+  let amount = document.getElementById('amount');
+  let tipPercent = document.getElementById('tipPercent');
+  let currency = document.getElementById('currency');
+  let tip = amount.value * (tipPercent.value / 100);
+  let total = parseInt(amount.value) + parseInt(tip);
+  function changeNumb() {
+    tip = amount.value * (tipPercent.value / 100);
+    total = parseInt(amount.value) + parseInt(tip);
+ }
+
+  document.getElementById("calculate").addEventListener('click', function(){
+    document.querySelector("main").style.backgroundColor = 'salmon';
+    document.getElementById('totalTipNumb').innerHTML = "<br>" + "Tip will be <b>" + currency.value + " " + tip  + "</b>" + "<br><br>" + "Your Total is <b>" + currency.value + " " + total + "</b>" ;
+    document.getElementById("calculate").disabled = true;
+    document.getElementById("buttonEdit").style.visibility = "visible";
+    document.getElementById("currency").disabled = true;
+    document.getElementById("tipPercent").disabled = true;
+    document.getElementById("amount").disabled = true;
+    return false;
+});
+document.getElementById("buttonEdit").addEventListener("click", function() {
+  document.querySelector("main").style.backgroundColor = 'bisque';
+  document.getElementById("calculate").disabled = false;
+  document.getElementById("currency").disabled = false;
+  document.getElementById("tipPercent").disabled = false;
+  document.getElementById("amount").disabled = false;
+  document.getElementById("buttonEdit").style.visibility = "hidden";
+  return false;
+});
