@@ -3,21 +3,76 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Console demo</title>
+    <title>Tip Calculator</title>
     <script src="script.js" defer></script>
+    <style>
+
+body {
+    width: 600px;
+    margin: 100px auto;
+    background: #f7f7f7;
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
+    border-radius: 20px;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+      }
+#buttonEdit {
+  visibility:hidden;}
+  section {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 65%;
+}
+#buttonEdit {
+margin-left: 30%;
+}
+#calculate {
+margin-left: 20%;
+}
+#totalTip {
+margin-left: 25%;
+font-size: 25px;
+font-style: normal;
+}
+img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+  padding-bottom: inherit;
+}
+main {
+  box-shadow: 0 0 10px rgba(251, 207, 38, 0.63);
+  border-radius: 25px !important;
+  /*! -webkit-border-radius: 50px; */
+  /*! -moz-border-radius: 20px; */
+  padding: 10px;
+}
+      </style>
   </head>
   <body>
     <main>
+      <img src="/tip-jar-2.png">
       <section>
           <!--Amount-->
-          <input type="text" />
+          <input type="number" id="amount" placeholder="Amount" />
           <!--Tip Percentage-->
-          <input type="text" />
+          <input type="number" id="tipPercent" placeholder="Tip Percentage % "  />
           <!--Locale Dropdown-->
-          <select>
-            <option value="en">USD</option>
+          <select id="currency">
+            <option value="USD"  >USD</option>
+            <option value="EUR"  >EUR</option>
+            <option value="GPB" >GPB</option>
+            <option value="JPY">JPY</option>
+            <option value="SAR">SAR</option>
           </select>
       </section>
+      <button type="button" id="calculate" onclick="changeNumb()" >Calculate</button><button class= "button4" id="buttonEdit" type="button">Edit Number</button><br>
+      <br>
+      <div id="totalTip">
+        <span id="totalTipNumb"></span>
+      </div>
     </main>
   </body>
 </html>
